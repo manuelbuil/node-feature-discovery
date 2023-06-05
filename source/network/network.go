@@ -114,6 +114,8 @@ func (s *networkSource) GetFeatures() *nfdv1alpha1.Features {
 
 func detectNetDevices() ([]nfdv1alpha1.InstanceFeature, error) {
 	sysfsBasePath := hostpath.SysfsDir.Path(sysfsBaseDir)
+	klog.Infof("MANU - This is sysfsBasePath: %v", sysfsBasePath)
+	klog.Infof("MANU - This is hostpath.PathPrefix: %v", hostpath.PathPrefix)
 
 	ifaces, err := os.ReadDir(sysfsBasePath)
 	if err != nil {
@@ -124,10 +126,12 @@ func detectNetDevices() ([]nfdv1alpha1.InstanceFeature, error) {
 	info := make([]nfdv1alpha1.InstanceFeature, 0, len(ifaces))
 	for _, iface := range ifaces {
 		name := iface.Name()
+		klog.Infof("MANU - This is the name: %v and the sysfsBasePath: %v", name, sysfsBasePath)
 		if _, err := os.Stat(filepath.Join(sysfsBasePath, name, "device")); err == nil {
 			info = append(info, readIfaceInfo(filepath.Join(sysfsBasePath, name)))
 		} else if klog.V(3).Enabled() {
 			klog.Infof("skipping non-device iface %q", name)
+			klog.Infof("MANU - This is the error: %v", err)
 		}
 	}
 

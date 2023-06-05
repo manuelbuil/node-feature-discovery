@@ -21,19 +21,19 @@ import (
 )
 
 var (
-	pathPrefix = "/"
+	PathPrefix = "/"
 	// BootDir is where the /boot directory of the system to be inspected is located
-	BootDir = HostDir(pathPrefix + "boot")
+	BootDir = HostDir(PathPrefix + "boot")
 	// EtcDir is where the /etc directory of the system to be inspected is located
-	EtcDir = HostDir(pathPrefix + "etc")
+	EtcDir = HostDir(PathPrefix + "etc")
 	// SysfsDir is where the /sys directory of the system to be inspected is located
-	SysfsDir = HostDir(pathPrefix + "sys")
+	SysfsDir = HostDir(PathPrefix + "sys")
 	// UsrDir is where the /usr directory of the system to be inspected is located
-	UsrDir = HostDir(pathPrefix + "usr")
+	UsrDir = HostDir(PathPrefix + "usr")
 	// VarDir is where the /var directory of the system to be inspected is located
-	VarDir = HostDir(pathPrefix + "var")
+	VarDir = HostDir(PathPrefix + "var")
 	// LibDir is where the /lib directory of the system to be inspected is located
-	LibDir = HostDir(pathPrefix + "lib")
+	LibDir = HostDir(PathPrefix + "lib")
 )
 
 // HostDir is a helper for handling host system directories
